@@ -70,3 +70,21 @@ swm_df =
   )
 ```
 
+## Get some water data
+
+from API
+
+```{r}
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.csv") %>% 
+  content("parsed")
+
+
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.json") %>% 
+  content("text") %>% 
+# more flexible?
+  jsonlite::fromJSON() %>% 
+  as.tibble()
+```
+

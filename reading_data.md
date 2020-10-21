@@ -98,3 +98,36 @@ swm_df =
     runtime = runtime_vec
   )
 ```
+
+## Get some water data
+
+from API
+
+``` r
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.csv") %>% 
+  content("parsed")
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   year = col_double(),
+    ##   new_york_city_population = col_double(),
+    ##   nyc_consumption_million_gallons_per_day = col_double(),
+    ##   per_capita_gallons_per_person_per_day = col_double()
+    ## )
+
+``` r
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.json") %>% 
+  content("text") %>% 
+# more flexible?
+  jsonlite::fromJSON() %>% 
+  as.tibble()
+```
+
+    ## Warning: `as.tibble()` is deprecated as of tibble 2.0.0.
+    ## Please use `as_tibble()` instead.
+    ## The signature and semantics have changed, see `?as_tibble`.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_warnings()` to see where this warning was generated.
