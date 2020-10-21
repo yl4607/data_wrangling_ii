@@ -131,3 +131,89 @@ nyc_water =
     ## The signature and semantics have changed, see `?as_tibble`.
     ## This warning is displayed once every 8 hours.
     ## Call `lifecycle::last_warnings()` to see where this warning was generated.
+
+\#\#BRFSS
+
+data from (<https://chronicdata.cdc.gov/resource/acme-vg9e.csv>)
+
+``` r
+brfss_2010 = 
+  GET("https://chronicdata.cdc.gov/resource/acme-vg9e.csv",
+      query = list("$limit" = 5000)) %>% 
+  content("parsed")  
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   .default = col_character(),
+    ##   year = col_double(),
+    ##   sample_size = col_double(),
+    ##   data_value = col_double(),
+    ##   confidence_limit_low = col_double(),
+    ##   confidence_limit_high = col_double(),
+    ##   display_order = col_double(),
+    ##   locationid = col_logical()
+    ## )
+
+    ## See spec(...) for full column specifications.
+
+``` r
+#134K rows in the websites but shows only 1000 rows; default limit to 1000
+```
+
+## Some data aren’t so nice
+
+Let’s look at Pokemon
+
+``` r
+pokemon_data = 
+  GET("http://pokeapi.co/api/v2/pokemon/1") %>% 
+  content
+
+pokemon_data$name
+```
+
+    ## [1] "bulbasaur"
+
+``` r
+pokemon_data$height
+```
+
+    ## [1] 7
+
+``` r
+pokemon_data$abilities
+```
+
+    ## [[1]]
+    ## [[1]]$ability
+    ## [[1]]$ability$name
+    ## [1] "overgrow"
+    ## 
+    ## [[1]]$ability$url
+    ## [1] "https://pokeapi.co/api/v2/ability/65/"
+    ## 
+    ## 
+    ## [[1]]$is_hidden
+    ## [1] FALSE
+    ## 
+    ## [[1]]$slot
+    ## [1] 1
+    ## 
+    ## 
+    ## [[2]]
+    ## [[2]]$ability
+    ## [[2]]$ability$name
+    ## [1] "chlorophyll"
+    ## 
+    ## [[2]]$ability$url
+    ## [1] "https://pokeapi.co/api/v2/ability/34/"
+    ## 
+    ## 
+    ## [[2]]$is_hidden
+    ## [1] TRUE
+    ## 
+    ## [[2]]$slot
+    ## [1] 3
+
+## Closing thoughts

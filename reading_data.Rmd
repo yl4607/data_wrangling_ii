@@ -88,3 +88,31 @@ nyc_water =
   as.tibble()
 ```
 
+##BRFSS
+
+data from (https://chronicdata.cdc.gov/resource/acme-vg9e.csv)
+
+```{r}
+brfss_2010 = 
+  GET("https://chronicdata.cdc.gov/resource/acme-vg9e.csv",
+      query = list("$limit" = 5000)) %>% 
+  content("parsed")  
+#134K rows in the websites but shows only 1000 rows; default limit to 1000
+```
+
+## Some data aren't so nice
+
+Let's look at Pokemon
+
+```{r}
+pokemon_data = 
+  GET("http://pokeapi.co/api/v2/pokemon/1") %>% 
+  content
+
+pokemon_data$name
+pokemon_data$height
+pokemon_data$abilities
+```
+
+## Closing thoughts 
+
