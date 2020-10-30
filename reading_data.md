@@ -1,6 +1,21 @@
 Reading Data
 ================
 
+two major paths 1) data included as content on a webpage 2) dedicated
+server holding data in a relatively usable form
+
+scrape web content
+
+CSS Selector - selector gadget
+
+rvest facilitates web scraping
+
+APIs Application Programming Interfaces give you a way to request
+specific data from a server web APIs aren’t uniform “lucky” case, you
+can request a CSV from API more general cases you’ll get JavaScript
+Object Notation
+    (JSON)
+
 ``` r
 library(tidyverse)
 ```
