@@ -205,3 +205,8 @@ weather_df %>%
   geom_violin()
 ```
 
+```{r}
+weather_df %>% 
+  lm(tmax ~ name, data= .)
+```
+
